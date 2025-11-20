@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  height: 100px;
+  position: relative;
+  top: 0;
+  z-index: 20;
+  background-color: var(--white);
+}
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1rem;
+  gap: 1rem;
+}
+
+.logo {
+  font-family: 'Onder', sans-serif;
+  line-height: 1;
+  font-weight: bold;
+  font-size: 30px;
+  color: var(--black);
+}
+
+.link {
+  font-weight: bold;
+}
+
+.button {
+  background-color: var(--brown);
+  color: white;
+  font-weight: 300;
+  padding: 0.5rem 3.5rem;
+  border-radius: 2rem;
+  line-height: 1;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .link {
+    display: none;
+  }
+}
