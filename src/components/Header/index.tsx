@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './Header.module.scss';
 import Link from 'next/link';
+import { Menu } from 'lucide-react';
+import useMenu from '@/store/menu';
 
 const Header = () => {
+  const { openMenu } = useMenu();
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -20,10 +23,15 @@ const Header = () => {
         <Link href={'/community'} className={styles.link}>
           сообщество
         </Link>
-        <Link href={'/editor'} className={styles.button}>
-          создать проект <br />
-          прямо сейчас
-        </Link>
+        <div className="flex items-center gap-5">
+          <Link href={'/editor'} className={styles.button}>
+            создать проект <br />
+            прямо сейчас
+          </Link>
+          <button onClick={openMenu} className={styles.menu}>
+            <Menu size={30} />
+          </button>
+        </div>
       </div>
     </header>
   );

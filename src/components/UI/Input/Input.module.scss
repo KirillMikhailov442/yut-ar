@@ -1,0 +1,55 @@
+.content {
+  height: 70px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  color: var(--black);
+}
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: var(--black);
+}
+.label {
+  font-size: 14px;
+  color: var(--black);
+}
+.input {
+  width: 100%;
+  height: 100%;
+  padding-inline: 1rem;
+  border: 2.5px solid var(--black);
+  transition: border-color 0.2s ease;
+  background-color: transparent;
+  color: var(--black);
+  outline: none;
+  border-radius: 15px;
+  font-size: 1.5rem;
+
+  &WithIcon {
+    padding-inline: 3rem 1rem;
+  }
+  &Error {
+    border-color: red !important;
+    & ~ .icon {
+      color: red;
+    }
+  }
+
+  .eye {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--black);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 6px;
+  }
+}
+.error {
+  color: red;
+  font-size: 12px;
+}

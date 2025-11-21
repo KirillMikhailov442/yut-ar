@@ -1,8 +1,7 @@
 .wrapper {
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
-  // margin-top: 8rem;
 }
 
 .container {
@@ -16,7 +15,7 @@
 .title {
   font-size: 2.2rem;
   color: var(--black);
-  line-height: 1;
+  line-height: 1.2;
   text-align: center;
   max-width: 1000px;
   margin-inline: auto;
@@ -25,7 +24,7 @@
     text-decoration: underline;
     text-decoration-color: #efbc18;
     text-decoration-thickness: 10px;
-    text-underline-offset: 10px;
+    text-underline-offset: 8px;
   }
 }
 

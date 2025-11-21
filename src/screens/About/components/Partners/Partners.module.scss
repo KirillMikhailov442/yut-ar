@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  min-height: 100dvh;
+  position: relative;
+}
+
+.container {
+  width: 1600px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  padding-top: 2rem;
+}
+
+.title {
+  font-size: 2.2rem;
+  line-height: 1;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.bgLines {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  user-select: none;
+  z-index: -1;
+}

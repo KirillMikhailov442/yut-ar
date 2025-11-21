@@ -18,7 +18,7 @@
 }
 
 .logo {
-  font-family: 'Onder', sans-serif;
+  font-family: 'Unbounded', sans-serif;
   line-height: 1;
   font-weight: bold;
   font-size: 30px;
@@ -27,6 +27,22 @@
 
 .link {
   font-weight: bold;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    transition: all 0.25s ease;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--yellow);
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
 }
 
 .button {
@@ -39,8 +55,17 @@
   text-align: center;
 }
 
+.menu {
+  display: none;
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
 @media (max-width: 1024px) {
   .link {
     display: none;
+  }
+  .menu {
+    display: block;
   }
 }

@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+@font-face {
+  font-family: 'Onder';
+  src: url('../assets/fonts/ONDER-REGULAR.TTF') format('ttf');
+  font-weight: 700;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Bureau';
   src: url('../assets/fonts/Non\ Bureau_Normal/NonBureau-Light.woff2')
@@ -29,8 +38,3 @@
   font-weight: 900;
   font-display: swap;
 }
-
-// @font-face {
-//   font-family: 'Onder';
-//   src: url('../assets/fonts/ONDER-REGULAR.TTF') format('ttf');
-// }

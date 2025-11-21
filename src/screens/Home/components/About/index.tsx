@@ -10,11 +10,11 @@ const About = () => {
       <div className={styles.container}>
         <div className="flex flex-col">
           <h5 className={styles.title}>уютar</h5>
-          <b className={styles.subtitle}>
+          <h6 className={styles.subtitle}>
             это ваш помощник в дизайне интерьера.{' '}
-          </b>
+          </h6>
         </div>
-        <div className="flex flex-col flex-grow justify-between max-lg:flex-grow-0">
+        <div className="flex flex-col gap-3 flex-grow justify-between max-lg:flex-grow-0">
           <div>
             <p className={styles.textLeft}>
               Создавайте проект своей мечты самостоятельно: выбирайте мебель и

@@ -9,10 +9,12 @@ const Hero = () => {
       <Image className={styles.bgLines} src={line_img} alt="line" />
       <div className={styles.container}>
         <div>
-          <h4 className={styles.title}>УЮТ AR</h4>
+          <h4 className={styles.title}>
+            Добро пожаловать в сообщество УЮТ AR!
+          </h4>
           <p className={styles.subtitle}>
-            это не только помощник в дизайне интерьера, но и пространство для
-            мебельных брендов
+            Здесь пользователи делятся идеями и вдохновением для интерьеров, а
+            вы можете легко интегрировать понравившиеся дизайны в свой дом
           </p>
         </div>
       </div>

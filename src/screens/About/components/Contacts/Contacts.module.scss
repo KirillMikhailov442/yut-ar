@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  min-height: 100dvh;
+  align-items: flex-end;
+}
+
+.container {
+  width: 1600px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  padding-bottom: 2rem;
+  display: flex;
+  height: 500px;
+}
+
+.logo {
+  flex-basis: 500px;
+  border: 15px solid var(--black);
+  padding: 3rem;
+
+  & h4 {
+    font-size: 3.2rem;
+    line-height: 1;
+  }
+
+  & p {
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+}
+
+.contacts {
+  flex-grow: 1;
+  background-color: var(--yellow);
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .logo {
+    flex-basis: 50%;
+  }
+
+  .contacts {
+    flex-basis: 50%;
+  }
+}

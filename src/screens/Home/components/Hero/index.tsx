@@ -10,9 +10,9 @@ const Hero = () => {
       <Image className={styles.bgLines} src={line_img} alt="line" />
       <div className={styles.container}>
         <Image className={styles.chair} src={chair_img} alt="clair" />
-        <b className={styles.title}>
+        <h5 className={styles.title}>
           От идеи к реальности — <br /> визуализация интерьера.
-        </b>
+        </h5>
       </div>
     </div>
   );
