@@ -1,0 +1,17 @@
+.stage {
+  border: 2px solid;
+  margin: auto;
+  background-image: linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+    linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+  background-size: 50px 50px;
+  transition: all 0.25s ease;
+
+  &Active {
+    background-image: linear-gradient(
+        to right,
+        var(--yellow) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, var(--yellow) 1px, transparent 1px);
+  }
+}

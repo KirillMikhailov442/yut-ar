@@ -40,6 +40,7 @@
 @media (max-width: 768px) {
   .container {
     justify-content: center;
+    flex-direction: column;
   }
   .chair {
     display: none;
