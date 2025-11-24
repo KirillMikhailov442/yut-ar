@@ -5,6 +5,9 @@ import styles from './Editor.module.scss';
 import { useRef, useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { IFurniture } from '@/types/Furniture';
+import { KonvaEventObject } from 'konva/lib/Node';
+import { Rect as KonvaRect } from 'konva/lib/shapes/Rect';
+import { Transformer as KonvaTransformer } from 'konva/lib/shapes/Transformer';
 
 interface Position {
   x: number;
@@ -22,8 +25,8 @@ interface BoundingBox {
 const Editor = () => {
   const [isDragMove, setIsDragMove] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const transformerRef = useRef<any>();
-  const shapesRef = useRef<{ [key: number]: any }>({});
+  const transformerRef = useRef<KonvaTransformer>(null);
+  const shapesRef = useRef<{ [key: number]: KonvaRect }>({});
 
   const [furnitures, setFurnitures] = useState<IFurniture[]>([
     { id: 1, x: 100, y: 0, title: 'A1', width: 100, height: 100, rotation: 0 },
@@ -32,10 +35,12 @@ const Editor = () => {
   ]);
 
   useEffect(() => {
-    if (selectedId && shapesRef.current[selectedId]) {
+    if (selectedId && shapesRef.current[selectedId] && transformerRef.current) {
       transformerRef.current.nodes([shapesRef.current[selectedId]]);
-    } else {
+      transformerRef.current.getLayer()?.batchDraw();
+    } else if (transformerRef.current) {
       transformerRef.current.nodes([]);
+      transformerRef.current.getLayer()?.batchDraw();
     }
   }, [selectedId]);
 
@@ -101,20 +106,17 @@ const Editor = () => {
     return { x: newX, y: newY };
   };
 
-  const handleDragEnd = (e: any, id: number) => {
+  const handleDragEnd = (e: KonvaEventObject<DragEvent>, id: number) => {
     setIsDragMove(false);
-    const newPos = snapToGrid(e.target.position());
-    const boundedPos = checkBoundaries(
-      newPos,
-      e.target.width(),
-      e.target.height(),
-    );
+    const node = e.target as KonvaRect;
+    const newPos = snapToGrid(node.position());
+    const boundedPos = checkBoundaries(newPos, node.width(), node.height());
 
     const hasCollision = checkCollisions(
       id,
       boundedPos,
-      e.target.width(),
-      e.target.height(),
+      node.width(),
+      node.height(),
     );
 
     if (!hasCollision) {
@@ -126,14 +128,14 @@ const Editor = () => {
     } else {
       const furniture = furnitures.find(f => f.id === id);
       if (furniture) {
-        e.target.position({ x: furniture.x, y: furniture.y });
-        e.target.getLayer().batchDraw();
+        node.position({ x: furniture.x, y: furniture.y });
+        node.getLayer()?.batchDraw();
       }
     }
   };
 
-  const handleDragMove = (e: any, id: number) => {
-    const node = e.target;
+  const handleDragMove = (e: KonvaEventObject<DragEvent>, id: number) => {
+    const node = e.target as KonvaRect;
     const newPos = snapToGrid({
       x: node.x(),
       y: node.y(),
@@ -157,7 +159,7 @@ const Editor = () => {
     node.position(boundedPos);
   };
 
-  const handleTransform = (e: any) => {
+  const handleTransform = (e: KonvaEventObject<Event>) => {
     if (!selectedId) return;
 
     const node = shapesRef.current[selectedId];
@@ -167,7 +169,7 @@ const Editor = () => {
     node.rotation(snappedRotation);
   };
 
-  const handleTransformEnd = (e: any) => {
+  const handleTransformEnd = (e: KonvaEventObject<Event>) => {
     if (!selectedId) return;
 
     const node = shapesRef.current[selectedId];
@@ -220,7 +222,7 @@ const Editor = () => {
         node.width(furniture.width);
         node.height(furniture.height);
         node.rotation(furniture.rotation || 0);
-        node.getLayer().batchDraw();
+        node.getLayer()?.batchDraw();
       }
     }
   };

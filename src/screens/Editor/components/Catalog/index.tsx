@@ -23,9 +23,33 @@ const Catalog = () => {
         </div>
         <Furnitures
           items={[
-            { id: 1, x: 1, y: 1, title: 'A1' },
-            { id: 2, x: 1, y: 1, title: 'A2' },
-            { id: 3, x: 1, y: 1, title: 'A3' },
+            {
+              id: 1,
+              x: 1,
+              y: 1,
+              title: 'A1',
+              height: 100,
+              width: 100,
+              rotation: 0,
+            },
+            {
+              id: 2,
+              x: 1,
+              y: 1,
+              title: 'A2',
+              height: 100,
+              width: 100,
+              rotation: 0,
+            },
+            {
+              id: 3,
+              x: 1,
+              y: 1,
+              title: 'A3',
+              height: 100,
+              width: 100,
+              rotation: 0,
+            },
           ]}
         />
       </div>
