@@ -28,6 +28,10 @@ h6 {
   font-size: 1.1rem;
 }
 
+.spinner .ant-spin-dot-item {
+  background-color: var(--yellow) !important;
+}
+
 .menu-item {
   font-family: 'Bureau';
   display: block;
