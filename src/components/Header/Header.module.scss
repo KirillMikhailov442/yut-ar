@@ -1,10 +1,15 @@
 .header {
   display: flex;
   height: 100px;
-  position: relative;
-  top: 0;
+  position: sticky;
+  top: -100%;
   z-index: 20;
   background-color: var(--white);
+  transition: all 0.5s ease;
+}
+
+.show {
+  top: 0;
 }
 
 .container {
@@ -21,7 +26,7 @@
   font-family: 'Unbounded', sans-serif;
   line-height: 1;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 1.5rem;
   color: var(--black);
 }
 
@@ -62,10 +67,18 @@
 }
 
 @media (max-width: 1024px) {
+  .header {
+    height: 80px;
+  }
+
   .link {
     display: none;
   }
   .menu {
     display: block;
+  }
+
+  .button {
+    padding: 0.5rem 2rem;
   }
 }

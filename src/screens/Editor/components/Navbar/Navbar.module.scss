@@ -1,7 +1,22 @@
 .navbar {
   height: 50px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding-inline: 1rem;
   border-bottom: 1px solid var(--black);
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.fullName {
+  font-size: 15px;
 }

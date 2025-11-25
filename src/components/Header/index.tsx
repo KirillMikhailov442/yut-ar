@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Header.module.scss';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
@@ -6,6 +5,7 @@ import useMenu from '@/store/menu';
 
 const Header = () => {
   const { openMenu } = useMenu();
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>

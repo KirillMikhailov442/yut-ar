@@ -23,6 +23,10 @@
   object-fit: cover;
   object-position: top;
   user-select: none;
+
+  @media (max-width: 1024px) {
+    height: 65dvh;
+  }
 }
 
 .chair {
@@ -47,7 +51,7 @@
   }
 
   .title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     align-self: center;
     text-align: center;
   }

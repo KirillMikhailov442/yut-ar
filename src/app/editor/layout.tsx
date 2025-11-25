@@ -4,7 +4,17 @@ import { DragDropContext } from '@hello-pangea/dnd';
 import { FC, ReactNode } from 'react';
 
 const EditorLayout: FC<{ children: ReactNode }> = ({ children }) => {
-  return <DragDropContext onDragEnd={() => {}}>{children}</DragDropContext>;
+  return (
+    <DragDropContext
+      onDragUpdate={() => {
+        console.log('update');
+      }}
+      onDragEnd={e => {
+        console.log(e);
+      }}>
+      {children}
+    </DragDropContext>
+  );
 };
 
 export default EditorLayout;

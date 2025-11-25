@@ -16,6 +16,29 @@
   line-height: 1;
   text-align: center;
   margin-inline: auto;
+  margin-bottom: 2rem;
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex-basis: 350px;
+  min-height: 500px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+
+  & img {
+    user-select: none;
+  }
+}
+
+.scriptAgency {
+  background-color: #060d0b;
 }
 
 .bgLines {

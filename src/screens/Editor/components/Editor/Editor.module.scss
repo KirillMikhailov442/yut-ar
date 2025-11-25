@@ -1,6 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  margin: auto;
+  gap: 10px;
+}
+
 .stage {
   border: 2px solid;
-  margin: auto;
   background-image: linear-gradient(to right, #e5e5e5 1px, transparent 1px),
     linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
   background-size: 50px 50px;
@@ -14,4 +21,11 @@
       ),
       linear-gradient(to bottom, var(--yellow) 1px, transparent 1px);
   }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
 }

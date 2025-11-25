@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '@styles/global.scss';
 import '@styles/fonts.scss';
+import { ConfigProvider } from 'antd';
 
 export const metadata: Metadata = {
   title: {
@@ -16,8 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
-      <body>{children}</body>
-    </html>
+    <ConfigProvider
+      theme={{
+        token: {
+          fontFamily: 'Bureau, sans-serif',
+        },
+      }}>
+      <html lang="ru">
+        <body>{children}</body>
+      </html>
+    </ConfigProvider>
   );
 }

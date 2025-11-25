@@ -1,7 +1,7 @@
 'use client';
 
 import { Draggable, Droppable } from '@hello-pangea/dnd';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styles from './Catalog.module.scss';
 import { IFurniture } from '@/types/Furniture';
 
@@ -34,6 +34,7 @@ const Furnitures: FC<IGrid> = ({ items }) => {
               )}
             </Draggable>
           ))}
+          {provided.placeholder}
         </ul>
       )}
     </Droppable>

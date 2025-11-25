@@ -18,6 +18,9 @@ const MainLayout = ({
         closable={{ 'aria-label': 'Close Button' }}
         onClose={closeMenu}
         open={open}>
+        <Link onClick={closeMenu} className="menu-item" href={'/'}>
+          главная
+        </Link>
         <Link onClick={closeMenu} className="menu-item" href={'/about'}>
           о нас
         </Link>

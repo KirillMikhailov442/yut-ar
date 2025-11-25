@@ -8,6 +8,8 @@ import { IFurniture } from '@/types/Furniture';
 import { KonvaEventObject } from 'konva/lib/Node';
 import { Rect as KonvaRect } from 'konva/lib/shapes/Rect';
 import { Transformer as KonvaTransformer } from 'konva/lib/shapes/Transformer';
+import { Input, InputNumber } from 'antd';
+import { X } from 'lucide-react';
 
 interface Position {
   x: number;
@@ -228,80 +230,87 @@ const Editor = () => {
   };
 
   return (
-    <Stage
-      width={1000}
-      height={600}
-      className={clsx(styles.stage, isDragMove && styles.stageActive)}
-      onMouseDown={e => {
-        if (e.target === e.target.getStage()) {
-          setSelectedId(null);
-        }
-      }}>
-      <Layer>
-        {furnitures.map(furniture => (
-          <Rect
-            key={furniture.id}
-            ref={ref => {
-              if (ref) {
-                shapesRef.current[furniture.id] = ref;
-                if (furniture.rotation) {
-                  ref.rotation(furniture.rotation);
+    <div className={styles.wrapper}>
+      <Stage
+        width={1000}
+        height={600}
+        className={clsx(styles.stage, isDragMove && styles.stageActive)}
+        onMouseDown={e => {
+          if (e.target === e.target.getStage()) {
+            setSelectedId(null);
+          }
+        }}>
+        <Layer>
+          {furnitures.map(furniture => (
+            <Rect
+              key={furniture.id}
+              ref={ref => {
+                if (ref) {
+                  shapesRef.current[furniture.id] = ref;
+                  if (furniture.rotation) {
+                    ref.rotation(furniture.rotation);
+                  }
                 }
+              }}
+              draggable
+              width={furniture.width}
+              height={furniture.height}
+              fill="#f0f0f0"
+              stroke="#333"
+              x={furniture.x}
+              y={furniture.y}
+              rotation={furniture.rotation || 0}
+              onDragMove={e => handleDragMove(e, furniture.id)}
+              onDragEnd={e => handleDragEnd(e, furniture.id)}
+              onDragStart={() => setIsDragMove(true)}
+              onClick={() => setSelectedId(furniture.id)}
+              onTap={() => setSelectedId(furniture.id)}
+              strokeWidth={selectedId === furniture.id ? 4 : 2}
+            />
+          ))}
+          <Transformer
+            ref={transformerRef}
+            rotateEnabled={true}
+            enabledAnchors={[
+              'top-left',
+              'top-right',
+              'bottom-left',
+              'bottom-right',
+              'rotater',
+            ]}
+            boundBoxFunc={(oldBox, newBox) => {
+              if (newBox.width < 20 || newBox.height < 20) {
+                return oldBox;
               }
+
+              if (newBox.x < 0) {
+                newBox.width += newBox.x;
+                newBox.x = 0;
+              }
+              if (newBox.y < 0) {
+                newBox.height += newBox.y;
+                newBox.y = 0;
+              }
+              if (newBox.x + newBox.width > 1000) {
+                newBox.width = 1000 - newBox.x;
+              }
+              if (newBox.y + newBox.height > 600) {
+                newBox.height = 600 - newBox.y;
+              }
+
+              return newBox;
             }}
-            draggable
-            width={furniture.width}
-            height={furniture.height}
-            fill="#f0f0f0"
-            stroke="#333"
-            x={furniture.x}
-            y={furniture.y}
-            rotation={furniture.rotation || 0}
-            onDragMove={e => handleDragMove(e, furniture.id)}
-            onDragEnd={e => handleDragEnd(e, furniture.id)}
-            onDragStart={() => setIsDragMove(true)}
-            onClick={() => setSelectedId(furniture.id)}
-            onTap={() => setSelectedId(furniture.id)}
-            strokeWidth={selectedId === furniture.id ? 4 : 2}
+            onTransform={handleTransform}
+            onTransformEnd={handleTransformEnd}
           />
-        ))}
-        <Transformer
-          ref={transformerRef}
-          rotateEnabled={true}
-          enabledAnchors={[
-            'top-left',
-            'top-right',
-            'bottom-left',
-            'bottom-right',
-            'rotater',
-          ]}
-          boundBoxFunc={(oldBox, newBox) => {
-            if (newBox.width < 20 || newBox.height < 20) {
-              return oldBox;
-            }
-
-            if (newBox.x < 0) {
-              newBox.width += newBox.x;
-              newBox.x = 0;
-            }
-            if (newBox.y < 0) {
-              newBox.height += newBox.y;
-              newBox.y = 0;
-            }
-            if (newBox.x + newBox.width > 1000) {
-              newBox.width = 1000 - newBox.x;
-            }
-            if (newBox.y + newBox.height > 600) {
-              newBox.height = 600 - newBox.y;
-            }
-
-            return newBox;
-          }}
-          onTransform={handleTransform}
-          onTransformEnd={handleTransformEnd}
-        />
-      </Layer>
-    </Stage>
+        </Layer>
+      </Stage>
+      <footer className={styles.footer}>
+        <InputNumber prefix={'Высота: '} style={{ width: 150 }} />
+        <X size={20} />
+        <InputNumber prefix={'Ширина: '} style={{ width: 150 }} />
+      </footer>
+    </div>
   );
 };
 

@@ -24,6 +24,10 @@
   object-fit: cover;
   object-position: top;
   user-select: none;
+
+  @media (max-width: 1024px) {
+    height: 65dvh;
+  }
 }
 
 .title {
@@ -32,10 +36,18 @@
   text-align: center;
   line-height: 1;
   color: var(--black);
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 }
 
 .subtitle {
   font-size: 2rem;
   text-align: center;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 }
