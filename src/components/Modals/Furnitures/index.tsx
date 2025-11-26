@@ -1,37 +1,33 @@
 'use client';
 
 import { useModals } from '@/store/modals';
-import { Input } from 'antd';
-import { Sheet } from 'react-modal-sheet';
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import 'react-spring-bottom-sheet/dist/style.css';
 import styles from './Furnitures.module.scss';
+import { Input } from '@chakra-ui/react';
 
 const FurnituresSheet = () => {
   const { modals, closeModal } = useModals();
   return (
-    <Sheet
-      isOpen={modals.furnitures}
-      onClose={() => {
-        closeModal('furnitures');
-      }}>
-      <Sheet.Backdrop />
-      <Sheet.Container>
-        <Sheet.Header />
-        <Sheet.Content>
-          <div className={styles.wrapper}>
-            <Input placeholder="Поиск" variant="filled" size={'large'} />
-            <div className={styles.categories}>
-              <button className={styles.categoriesItem}>Каталог</button>
-              <button className={styles.categoriesItem}>Каталог</button>
-              <button className={styles.categoriesItem}>Каталог</button>
-              <button className={styles.categoriesItem}>Каталог</button>
-            </div>
-            <ul className={styles.grid}>
-              <li className={styles.gridItem}></li>
-            </ul>
-          </div>
-        </Sheet.Content>
-      </Sheet.Container>
-    </Sheet>
+    <BottomSheet
+      className={styles.sheet}
+      header={<h5>Каталог</h5>}
+      snapPoints={({ maxHeight }) => [maxHeight * 0.9]}
+      open={modals.furnitures}
+      onDismiss={() => closeModal('furnitures')}>
+      <div className={styles.wrapper}>
+        <Input placeholder="Поиск" size={'xl'} />
+        <div className={styles.categories}>
+          <button className={styles.categoriesItem}>Каталог</button>
+          <button className={styles.categoriesItem}>Каталог</button>
+          <button className={styles.categoriesItem}>Каталог</button>
+          <button className={styles.categoriesItem}>Каталог</button>
+        </div>
+        <ul className={styles.grid}>
+          <li className={styles.gridItem}></li>
+        </ul>
+      </div>
+    </BottomSheet>
   );
 };
 

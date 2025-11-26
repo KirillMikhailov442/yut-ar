@@ -8,8 +8,9 @@ import { IFurniture } from '@/types/Furniture';
 import { KonvaEventObject } from 'konva/lib/Node';
 import { Rect as KonvaRect } from 'konva/lib/shapes/Rect';
 import { Transformer as KonvaTransformer } from 'konva/lib/shapes/Transformer';
-import { Input, InputNumber } from 'antd';
 import { X } from 'lucide-react';
+import { Input } from '@chakra-ui/react';
+import { Droppable } from '@hello-pangea/dnd';
 
 interface Position {
   x: number;
@@ -23,6 +24,8 @@ interface BoundingBox {
   height: number;
   rotation?: number;
 }
+
+const CELL_SIZE = 20;
 
 const Editor = () => {
   const [isDragMove, setIsDragMove] = useState(false);
@@ -48,8 +51,8 @@ const Editor = () => {
 
   const snapToGrid = (position: Position) => {
     return {
-      x: Math.round(position.x / 50) * 50,
-      y: Math.round(position.y / 50) * 50,
+      x: Math.round(position.x / CELL_SIZE) * CELL_SIZE,
+      y: Math.round(position.y / CELL_SIZE) * CELL_SIZE,
     };
   };
 
@@ -231,53 +234,50 @@ const Editor = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Stage
-        width={1000}
-        height={600}
-        className={clsx(styles.stage, isDragMove && styles.stageActive)}
-        onMouseDown={e => {
-          if (e.target === e.target.getStage()) {
-            setSelectedId(null);
-          }
-        }}>
-        <Layer>
-          {furnitures.map(furniture => (
-            <Rect
-              key={furniture.id}
-              ref={ref => {
-                if (ref) {
-                  shapesRef.current[furniture.id] = ref;
-                  if (furniture.rotation) {
-                    ref.rotation(furniture.rotation);
-                  }
+      <Droppable droppableId="editor">
+        {provided => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            <Stage
+              width={1000}
+              height={600}
+              className={clsx(styles.stage, isDragMove && styles.stageActive)}
+              onMouseDown={e => {
+                if (e.target === e.target.getStage()) {
+                  setSelectedId(null);
                 }
-              }}
-              draggable
-              width={furniture.width}
-              height={furniture.height}
-              fill="#f0f0f0"
-              stroke="#333"
-              x={furniture.x}
-              y={furniture.y}
-              rotation={furniture.rotation || 0}
-              onDragMove={e => handleDragMove(e, furniture.id)}
-              onDragEnd={e => handleDragEnd(e, furniture.id)}
-              onDragStart={() => setIsDragMove(true)}
-              onClick={() => setSelectedId(furniture.id)}
-              onTap={() => setSelectedId(furniture.id)}
-              strokeWidth={selectedId === furniture.id ? 4 : 2}
-            />
-          ))}
-          <Transformer
+              }}>
+              <Layer>
+                {furnitures.map(furniture => (
+                  <Rect
+                    key={furniture.id}
+                    ref={ref => {
+                      if (ref) {
+                        shapesRef.current[furniture.id] = ref;
+                        if (furniture.rotation) {
+                          ref.rotation(furniture.rotation);
+                        }
+                      }
+                    }}
+                    draggable
+                    width={furniture.width}
+                    height={furniture.height}
+                    fill="#f0f0f0"
+                    stroke="#333"
+                    x={furniture.x}
+                    y={furniture.y}
+                    rotation={furniture.rotation || 0}
+                    onDragMove={e => handleDragMove(e, furniture.id)}
+                    onDragEnd={e => handleDragEnd(e, furniture.id)}
+                    onDragStart={() => setIsDragMove(true)}
+                    onClick={() => setSelectedId(furniture.id)}
+                    onTap={() => setSelectedId(furniture.id)}
+                    strokeWidth={selectedId === furniture.id ? 4 : 2}
+                  />
+                ))}
+                {/* <Transformer
             ref={transformerRef}
             rotateEnabled={true}
-            enabledAnchors={[
-              'top-left',
-              'top-right',
-              'bottom-left',
-              'bottom-right',
-              'rotater',
-            ]}
+            enabledAnchors={['rotater']}
             boundBoxFunc={(oldBox, newBox) => {
               if (newBox.width < 20 || newBox.height < 20) {
                 return oldBox;
@@ -302,13 +302,26 @@ const Editor = () => {
             }}
             onTransform={handleTransform}
             onTransformEnd={handleTransformEnd}
-          />
-        </Layer>
-      </Stage>
+          /> */}
+              </Layer>
+            </Stage>
+          </div>
+        )}
+      </Droppable>
       <footer className={styles.footer}>
-        <InputNumber prefix={'Высота: '} style={{ width: 150 }} />
+        <Input
+          type="number"
+          placeholder="Высота:"
+          size={'xs'}
+          style={{ width: 150 }}
+        />
         <X size={20} />
-        <InputNumber prefix={'Ширина: '} style={{ width: 150 }} />
+        <Input
+          type="number"
+          placeholder="Ширина:"
+          size={'xs'}
+          style={{ width: 150 }}
+        />
       </footer>
     </div>
   );

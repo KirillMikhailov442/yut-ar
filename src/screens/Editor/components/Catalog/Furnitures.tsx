@@ -9,7 +9,7 @@ interface IGrid {
 
 const Furnitures: FC<IGrid> = ({ items }) => {
   return (
-    <Droppable droppableId="sidebar" isDropDisabled>
+    <Droppable droppableId="sidebar">
       {(provided, snapshot) => (
         <ul
           {...provided.droppableProps}
@@ -20,11 +20,11 @@ const Furnitures: FC<IGrid> = ({ items }) => {
               key={item.id}
               index={index}
               draggableId={`sidebar-${item.id}`}>
-              {(provided, snapshot) => (
+              {(providedDrag, snapshot) => (
                 <li
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
+                  ref={providedDrag.innerRef}
+                  {...providedDrag.draggableProps}
+                  {...providedDrag.dragHandleProps}
                   key={item.id}
                   className={styles.gridItem}>
                   {item.title}

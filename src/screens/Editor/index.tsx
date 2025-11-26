@@ -6,6 +6,7 @@ import Editor from './components/Editor';
 import FurnituresSheet from '@/components/Modals/Furnitures';
 import { Splitter, useMediaQuery } from '@chakra-ui/react';
 import { useState } from 'react';
+import { Droppable } from '@hello-pangea/dnd';
 
 const EditorScreen = () => {
   const [isLaptop] = useMediaQuery(['(max-width: 1024px)']);
@@ -27,7 +28,10 @@ const EditorScreen = () => {
       <Splitter.Root
         size={sizes}
         onResize={details => setSizes(details.size)}
-        panels={[{ id: 'catalog' }, { id: 'editor' }]}>
+        panels={[
+          { id: 'catalog', minSize: 25 },
+          { id: 'editor', minSize: 50 },
+        ]}>
         <Splitter.Panel id="catalog">
           <Catalog />
         </Splitter.Panel>

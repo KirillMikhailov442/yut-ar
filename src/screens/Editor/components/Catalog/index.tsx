@@ -1,11 +1,11 @@
+import { Input } from '@chakra-ui/react';
 import styles from './Catalog.module.scss';
-import Input from 'antd/es/input/Input';
 import Furnitures from './Furnitures';
 
 const Catalog = () => {
   return (
     <div className={styles.wrapper}>
-      <Input placeholder="Поиск" variant="filled" size={'large'} />
+      <Input placeholder="Поиск" size={'sm'} />
       <div className={styles.categories}>
         <button className={styles.categoriesItem}>Каталог</button>
         <button className={styles.categoriesItem}>Каталог</button>
