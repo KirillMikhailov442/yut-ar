@@ -4,6 +4,7 @@
   margin: 1rem;
   font-family: 'Bureau', sans-serif;
   gap: 1rem;
+  height: calc(100% - 40px);
 }
 
 .categories {
@@ -35,6 +36,7 @@
   grid-auto-rows: 100px;
   gap: 10px;
   flex-grow: 1;
+  overflow-y: scroll;
 
   &Item {
     border: 2px solid;

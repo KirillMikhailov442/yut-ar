@@ -6,7 +6,7 @@ const AuthLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="h-[100dvh] flex flex-col">
+    <div className="h-[100vh] flex flex-col">
       <header className="flex">
         <Link href={'/'} className="auth-back">
           НА ГЛАВНУЮ

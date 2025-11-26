@@ -1,11 +1,11 @@
 .wrapper {
   display: flex;
-  min-height: 100dvh;
+  min-height: 100vh;
   position: relative;
 }
 
 .container {
-  width: 1600px;
+  width: 1440px;
   margin-inline: auto;
   padding-inline: 1rem;
   padding-top: 2rem;
@@ -23,6 +23,10 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .card {

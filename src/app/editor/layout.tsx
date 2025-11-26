@@ -1,19 +1,22 @@
 'use client';
 
+import { Provider } from '@/components/ui/provider';
 import { DragDropContext } from '@hello-pangea/dnd';
 import { FC, ReactNode } from 'react';
 
 const EditorLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <DragDropContext
-      onDragUpdate={() => {
-        console.log('update');
-      }}
-      onDragEnd={e => {
-        console.log(e);
-      }}>
-      {children}
-    </DragDropContext>
+    <Provider>
+      <DragDropContext
+        onDragUpdate={() => {
+          console.log('update');
+        }}
+        onDragEnd={e => {
+          console.log(e);
+        }}>
+        {children}
+      </DragDropContext>
+    </Provider>
   );
 };
 

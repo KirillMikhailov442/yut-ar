@@ -33,20 +33,23 @@
 .link {
   font-weight: bold;
   position: relative;
+  transition: all 0.4s ease;
+  padding: 5px 1rem;
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: 0%;
-    transition: all 0.25s ease;
-    height: 3px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--yellow);
+  & svg {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: all 0.4s ease;
+    opacity: 0;
   }
 
-  &:hover::before {
-    width: 100%;
+  &:hover {
+    color: var(--yellow);
+
+    & svg {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
   }
 }
 
@@ -74,6 +77,7 @@
   .link {
     display: none;
   }
+
   .menu {
     display: block;
   }

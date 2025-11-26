@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@styles/global.scss';
 import '@styles/fonts.scss';
 import { ConfigProvider } from 'antd';
+import { Provider } from '@/components/ui/provider';
 
 export const metadata: Metadata = {
   title: {

@@ -1,7 +1,7 @@
 'use client';
 
 import Header from '@/components/Header';
-import useMenu from '@/store/menu';
+import { useModals } from '@/store/modals';
 import { Drawer } from 'antd';
 import Link from 'next/link';
 
@@ -10,24 +10,36 @@ const MainLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const { open, closeMenu } = useMenu();
+  const { modals, closeModal } = useModals();
   return (
     <>
       <Drawer
         title="Меню"
         closable={{ 'aria-label': 'Close Button' }}
-        onClose={closeMenu}
-        open={open}>
-        <Link onClick={closeMenu} className="menu-item" href={'/'}>
+        onClose={() => closeModal('menu')}
+        open={modals.menu}>
+        <Link
+          onClick={() => closeModal('menu')}
+          className="menu-item"
+          href={'/'}>
           главная
         </Link>
-        <Link onClick={closeMenu} className="menu-item" href={'/about'}>
+        <Link
+          onClick={() => closeModal('menu')}
+          className="menu-item"
+          href={'/about'}>
           о нас
         </Link>
-        <Link onClick={closeMenu} className="menu-item" href={'/cooperation'}>
+        <Link
+          onClick={() => closeModal('menu')}
+          className="menu-item"
+          href={'/cooperation'}>
           сотрудничество
         </Link>
-        <Link onClick={closeMenu} className="menu-item" href={'/community'}>
+        <Link
+          onClick={() => closeModal('menu')}
+          className="menu-item"
+          href={'/community'}>
           сообщество
         </Link>
       </Drawer>

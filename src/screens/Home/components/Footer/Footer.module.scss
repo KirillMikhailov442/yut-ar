@@ -1,5 +1,5 @@
 .footer {
-  min-min-height: 100dvh;
+  min-min-height: 100vh;
   display: flex;
 }
 
@@ -26,6 +26,7 @@
   font-size: 1.75rem;
   line-height: 1;
   margin-bottom: 8rem;
+  margin-inline: 1rem;
 
   @media (max-width: 768px) {
     font-size: 1.2rem;

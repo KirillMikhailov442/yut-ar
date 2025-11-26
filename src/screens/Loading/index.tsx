@@ -3,7 +3,7 @@ import { Spin } from 'antd';
 
 const LoadingScreen = () => {
   return (
-    <div className="h-[100dvh] w-[100dvw] flex items-center justify-center">
+    <div className="h-[100vh] w-[100dvw] flex items-center justify-center">
       <Spin size="large" className="spinner" />
     </div>
   );

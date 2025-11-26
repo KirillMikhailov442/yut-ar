@@ -23,12 +23,31 @@ const ProjectScreen = () => {
         </div>
       </div>
       <ul className={styles.grid}>
-        <li className={styles.gridItem}>1</li>
-        <li className={styles.gridItem}>1</li>
-        <li className={styles.gridItem}>1</li>
-        <li className={styles.gridItem}>1</li>
-        <li className={styles.gridItem}>1</li>
-        <li className={styles.gridItem}>1</li>
+        <li>
+          <Link href={'/editor/1'} className={styles.gridItem}>
+            Проект 1
+          </Link>
+        </li>
+        <li>
+          <Link href={'/editor/2'} className={styles.gridItem}>
+            Проект 2
+          </Link>
+        </li>
+        <li>
+          <Link href={'/editor/3'} className={styles.gridItem}>
+            Проект 3
+          </Link>
+        </li>
+        <li>
+          <Link href={'/editor/4'} className={styles.gridItem}>
+            Проект 4
+          </Link>
+        </li>
+        <li>
+          <Link href={'/editor/5'} className={styles.gridItem}>
+            Проект 5
+          </Link>
+        </li>
       </ul>
     </div>
   );

@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  min-height: 100dvh;
+  min-height: 100vh;
   align-items: flex-end;
 }
 
@@ -40,6 +40,7 @@
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
+    padding: 0;
   }
 
   .logo {
