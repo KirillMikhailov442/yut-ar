@@ -6,7 +6,6 @@ import Editor from './components/Editor';
 import FurnituresSheet from '@/components/Modals/Furnitures';
 import { Splitter, useMediaQuery } from '@chakra-ui/react';
 import { useState } from 'react';
-import { Droppable } from '@hello-pangea/dnd';
 
 const EditorScreen = () => {
   const [isLaptop] = useMediaQuery(['(max-width: 1024px)']);
@@ -14,7 +13,7 @@ const EditorScreen = () => {
 
   if (isLaptop) {
     return (
-      <div className="flex flex-col h-[100vh] w-[100dvw] overflow-hidden">
+      <div className="flex flex-col h-[100vh] w-[100dvw]">
         <NavBar />
         <Editor />
         <FurnituresSheet />
@@ -32,7 +31,7 @@ const EditorScreen = () => {
           { id: 'catalog', minSize: 25 },
           { id: 'editor', minSize: 50 },
         ]}>
-        <Splitter.Panel id="catalog">
+        <Splitter.Panel style={{ overflow: 'visible' }} id="catalog">
           <Catalog />
         </Splitter.Panel>
         <Splitter.ResizeTrigger id="catalog:editor" />

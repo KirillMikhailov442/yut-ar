@@ -32,14 +32,25 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-auto-rows: 150px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
   gap: 10px;
   flex-grow: 1;
   overflow-y: scroll;
 
   &Item {
-    border: 2px solid;
-    background-color: var(--yellow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.16);
+    }
   }
 }
