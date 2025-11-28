@@ -2,14 +2,37 @@ import type { Metadata } from 'next';
 import '@styles/global.scss';
 import '@styles/fonts.scss';
 import { ConfigProvider } from 'antd';
-import { Provider } from '@/components/ui/provider';
+import {
+  PUBLISHED,
+  SITE_DESCRIPTION,
+  SITE_KEY_WORDS,
+  SITE_NAME,
+} from '@/configs/seo';
 
 export const metadata: Metadata = {
   title: {
-    template: 'УЮТ AR | %s',
-    default: 'УЮТ AR',
+    template: `${SITE_NAME} | %s`,
+    default: SITE_NAME,
   },
-  description: 'Ваш помощник в дизайне интерьера',
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEY_WORDS,
+  publisher: PUBLISHED,
+  themeColor: '#efbc18',
+
+  openGraph: {
+    type: 'website',
+    locale: 'ru_RU',
+    siteName: SITE_NAME,
+    title: SITE_DESCRIPTION,
+    images: [
+      {
+        url: '/favicon-128x128.png',
+        width: 128,
+        height: 128,
+        alt: SITE_NAME,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

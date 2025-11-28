@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import './vars.scss';
+@use 'tailwindcss';
+@use './vars.scss';
 
 html {
   font-size: 20px;
