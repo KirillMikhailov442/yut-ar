@@ -26,9 +26,15 @@ export const metadata: Metadata = {
     title: SITE_DESCRIPTION,
     images: [
       {
-        url: '/favicon-128x128.png',
-        width: 128,
-        height: 128,
+        url: '/icons/192x192.png',
+        width: 192,
+        height: 192,
+        alt: SITE_NAME,
+      },
+      {
+        url: '/icons/512x512.png',
+        width: 512,
+        height: 512,
         alt: SITE_NAME,
       },
     ],
