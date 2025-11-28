@@ -11,17 +11,8 @@ interface EditorStore {
 export const useCatalog = create<EditorStore>((set, get) => ({
   furnitures: [
     {
-      id: 1,
-      title: 'A',
-      x: 10,
-      y: 10,
-      width: 100,
-      height: 100,
-      rotation: 0,
-    },
-    {
       id: 2,
-      title: 'B',
+      title: 'A',
       x: 10,
       y: 10,
       width: 100,
