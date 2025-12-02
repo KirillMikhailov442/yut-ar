@@ -1,5 +1,5 @@
 export interface IProductToCategory {
-  id: string;
+  id: number;
   product_id: number;
   category_id: number;
 }

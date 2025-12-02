@@ -1,4 +1,5 @@
-# Ignore all HTML files
 **/*.html
-# Ignore a specific folder
-node_modules/
+**/node_modules/**
+**/dist/**
+**/build/**
+*.min.js
