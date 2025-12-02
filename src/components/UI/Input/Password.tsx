@@ -53,7 +53,7 @@ const InputPassword: FC<InputProps> = ({
         <span
           onClick={() => setShowPassword(prev => !prev)}
           className={styles.eye}>
-          {!showPassword ? <Eye size={30} /> : <EyeOff size={30} />}
+          {!showPassword ? <Eye size={25} /> : <EyeOff size={25} />}
         </span>
       </div>
       {error && <p className={styles.error}>{error}</p>}

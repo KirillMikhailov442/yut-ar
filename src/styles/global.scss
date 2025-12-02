@@ -21,6 +21,10 @@ h6 {
   font-family: 'Unbounded', sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 .auth-back {
   display: block;
   background-color: var(--yellow);
