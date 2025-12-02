@@ -1,8 +1,8 @@
-import { NextPage } from 'next';
-import Hero from './components/Hero';
-import About from './components/About';
-import List from '@/components/List';
-import Footer from './components/Footer';
+import { NextPage } from "next";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import List from "@/components/List";
+import Footer from "./components/Footer";
 
 const HomeScreen: NextPage = () => {
   return (
@@ -12,13 +12,13 @@ const HomeScreen: NextPage = () => {
       <List
         title={
           <>
-            С нами процесс ремонта - это не про стресс, а про{' '}
+            С нами процесс ремонта - это не про стресс, а про{" "}
             <span>удовольствие от исполнения желаний</span>
           </>
         }
         items={[
           {
-            title: 'Удобный интерфейс',
+            title: "Удобный интерфейс",
             description: (
               <p>
                 Никаких сложных меню — откройте приложение и приступайте к
@@ -27,17 +27,17 @@ const HomeScreen: NextPage = () => {
             ),
           },
           {
-            title: 'Интерьер, который можно купить',
+            title: "Интерьер, который можно купить",
             description: (
               <p>
-                Не нужно искать похожие модели по всему интернету: в{' '}
+                Не нужно искать похожие модели по всему интернету: в{" "}
                 <b>УЮТAR</b> вы работаете с реальной мебелью местных
                 производителей. Один клик — и вы на странице товара в магазине!
               </p>
             ),
           },
           {
-            title: 'Бюджет проекта перед глазами',
+            title: "Бюджет проекта перед глазами",
             description: <p>Сервис расчитает затраты на проект за вас!</p>,
           },
         ]}
