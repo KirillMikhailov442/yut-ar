@@ -9,8 +9,13 @@ const Hero = () => {
     <div className={styles.hero}>
       <Image className={styles.bgLines} src={line_img} alt="line" />
       <div className={styles.container}>
-        <Image className={styles.chair} src={chair_img} alt="clair" />
-        <h5 className={styles.title}>
+        <Image
+          className={styles.chair}
+          data-speed="0.85"
+          src={chair_img}
+          alt="clair"
+        />
+        <h5 data-speed="0.9" className={styles.title}>
           От идеи к реальности — <br /> визуализация интерьера.
         </h5>
       </div>

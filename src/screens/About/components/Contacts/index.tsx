@@ -1,10 +1,29 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 import styles from './Contacts.module.scss';
+import gsap from 'gsap';
 
 const Contacts = () => {
+  const contactsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.from(contactsRef.current, {
+      opacity: 0,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: contactsRef.current,
+        start: '30% bottom',
+        end: '70% bottom',
+        toggleActions: 'play none none none',
+        once: true,
+      },
+    });
+  }, []);
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div ref={contactsRef} className={styles.container}>
         <div className={styles.logo}>
           <h4>
             УЮТ

@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Hero.module.scss';
 import line_img from '@images/bg-lines.png';
 import Image from 'next/image';
