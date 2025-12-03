@@ -1,5 +1,9 @@
 import productService from '@/api/services/product';
-import { IProduct, IProductCreate, IProductUpdate } from '@/types/Product';
+import {
+  IProductCreate,
+  IProductUpdate,
+  ProductResponse,
+} from '@/types/Product';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const useProducts = () => {
@@ -17,7 +21,7 @@ export const useProduct = (id: number) => {
 };
 
 export const useProductCreate = (
-  onSuccess?: (data: IProduct) => void,
+  onSuccess?: (data: ProductResponse) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({
@@ -29,7 +33,7 @@ export const useProductCreate = (
 };
 
 export const useProductUpdate = (
-  onSuccess?: (data: IProduct) => void,
+  onSuccess?: (data: ProductResponse) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({

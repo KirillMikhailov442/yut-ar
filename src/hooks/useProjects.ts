@@ -1,5 +1,9 @@
 import projectService from '@/api/services/project';
-import { IProject, IProjectCreate, IProjectUpdate } from '@/types/Project';
+import {
+  IProjectCreate,
+  IProjectUpdate,
+  ProjectResponse,
+} from '@/types/Project';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const useProjects = () => {
@@ -18,7 +22,7 @@ export const useProject = (id: number) => {
 };
 
 export const useProjectCreate = (
-  onSuccess?: (data: IProject) => void,
+  onSuccess?: (data: ProjectResponse) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({
@@ -30,7 +34,7 @@ export const useProjectCreate = (
 };
 
 export const useProjectUpdate = (
-  onSuccess?: (data: IProject) => void,
+  onSuccess?: (data: ProjectResponse) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({

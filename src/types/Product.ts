@@ -1,3 +1,5 @@
+import { ResponseBase } from './Response';
+
 export interface IProduct {
   id: number;
   title: string;
@@ -12,3 +14,7 @@ export interface IProduct {
 export type IProductCreate = Omit<IProduct, 'id'>;
 
 export type IProductUpdate = Omit<IProduct, 'id'>;
+
+export type ProductResponse = ResponseBase<IProduct>;
+
+export type ProductsResponse = ResponseBase<IProduct[]>;

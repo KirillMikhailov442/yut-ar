@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import cartService from '@/api/services/cart';
-import { ICart, ICartCreate, ICartUpdate } from '@/types/Cart';
+import { CartResponse, ICartCreate, ICartUpdate } from '@/types/Cart';
 
 export const useCarts = () => {
   return useQuery({
@@ -17,7 +17,7 @@ export const useCart = (id: number) => {
 };
 
 export const useCartCreate = (
-  onSuccess?: (data: ICart) => void,
+  onSuccess?: (data: CartResponse) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({
@@ -29,7 +29,7 @@ export const useCartCreate = (
 };
 
 export const useCartUpdate = (
-  onSuccess?: (data: ICart) => void,
+  onSuccess?: (data: CartResponse) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({
