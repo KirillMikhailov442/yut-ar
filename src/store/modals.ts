@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type ModalName = 'menu' | 'furnitures';
+type ModalName = 'menu' | 'furnitures' | 'addProject';
 
 interface ModalStore {
   modals: Record<ModalName, boolean>;
@@ -17,10 +17,12 @@ export const useModals = create<ModalStore>(set => ({
   modals: {
     menu: false,
     furnitures: false,
+    addProject: false,
   },
   params: {
     menu: '',
     furnitures: '',
+    addProject: '',
   },
 
   openModal: name =>

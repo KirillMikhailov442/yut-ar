@@ -1,30 +1,35 @@
 import { apiComfortService } from '../config';
-import { IProduct, IProductCreate, IProductUpdate } from '@/types/Product';
+import {
+  IProductCreate,
+  IProductUpdate,
+  ProductResponse,
+  ProductsResponse,
+} from '@/types/Product';
 
 class ProductService {
   private readonly baseUrl = '/product';
 
   public create(body: IProductCreate) {
     return apiComfortService
-      .post<IProduct>(this.baseUrl, body)
+      .post<ProductResponse>(this.baseUrl, body)
       .then(res => res.data);
   }
 
   public update(body: IProductUpdate, id: number) {
     return apiComfortService
-      .put<IProduct>(`${this.baseUrl}/${id}`, body)
+      .put<ProductResponse>(`${this.baseUrl}/${id}`, body)
       .then(res => res.data);
   }
 
   public findAll() {
     return apiComfortService
-      .get<IProduct[]>(this.baseUrl)
+      .get<ProductsResponse>(this.baseUrl)
       .then(res => res.data);
   }
 
   public findById(id: number) {
     return apiComfortService
-      .get<IProduct>(`${this.baseUrl}/${id}`)
+      .get<ProductResponse>(`${this.baseUrl}/${id}`)
       .then(res => res.data);
   }
 

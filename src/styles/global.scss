@@ -50,6 +50,10 @@ button {
   }
 }
 
+[data-rsbs-content] {
+  height: 100%;
+}
+
 @media (max-width: 1440px) {
   html {
     font-size: 18px;

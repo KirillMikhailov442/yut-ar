@@ -1,4 +1,12 @@
-import { IUser, IUserCreate, IUserUpdate } from '@/types/User';
+import {
+  ILogin,
+  IUser,
+  IUserCreate,
+  IUserUpdate,
+  LoginResponse,
+  UserResponse,
+  UsersResponse,
+} from '@/types/User';
 import { apiComfortService } from '../config';
 
 class UserService {
@@ -12,17 +20,19 @@ class UserService {
 
   public update(body: IUserUpdate, id: number) {
     return apiComfortService
-      .put<IUser>(`${this.baseUrl}/${id}`, body)
+      .put<UserResponse>(`${this.baseUrl}/${id}`, body)
       .then(res => res.data);
   }
 
   public findAll() {
-    return apiComfortService.get<IUser[]>(this.baseUrl).then(res => res.data);
+    return apiComfortService
+      .get<UsersResponse>(this.baseUrl)
+      .then(res => res.data);
   }
 
   public findById(id: number) {
     return apiComfortService
-      .get<IUser>(`${this.baseUrl}/${id}`)
+      .get<UserResponse>(`${this.baseUrl}/${id}`)
       .then(res => res.data);
   }
 
@@ -34,7 +44,13 @@ class UserService {
 
   public profile() {
     return apiComfortService
-      .get<IUser>(`${this.baseUrl}/profile`)
+      .get<UserResponse>(`${this.baseUrl}/profile`)
+      .then(res => res.data);
+  }
+
+  public login(body: ILogin) {
+    return apiComfortService
+      .post<LoginResponse>(`${this.baseUrl}/login`, body)
       .then(res => res.data);
   }
 }

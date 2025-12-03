@@ -37,11 +37,19 @@
   &Item {
     border: 1px solid var(--black);
     border-radius: 10px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     background-color: var(--yellow);
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
+    text-align: center;
   }
+}
+
+.add {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  gap: 10px;
 }

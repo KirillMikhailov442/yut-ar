@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
     preloadEntriesOnStart: false,
     optimizePackageImports: ['@chakra-ui/react'],
   },
+
+  async rewrites() {
+    return [
+      {
+        source: '/api/comfortar/v1/:path*',
+        destination: 'https://api.comfortar.thescript.agency/v1/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

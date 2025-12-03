@@ -19,7 +19,6 @@
       }
     ],
     "paths":{
-      "@/*":["./src/*"],
       "@components/*":["./src/components/*"],
       "@UI/*":["./src/components/UI/*"],
       "@layouts/*":["./src/components/layouts/*"],
@@ -38,7 +37,8 @@
       "@helpers/*":["./src/helpers/*"],
       "@constants/*":["./src/constants/*"],
       "@types/*":["./src/types/*"],
-      "@public/*": ["./public/*"]
+      "@public/*": ["./public/*"],
+      "@/*":["./src/*"],
     }
   },
   "include": [

@@ -10,5 +10,5 @@ export const middleware = (req: NextRequest) => {
   return NextResponse.next();
 };
 export const config = {
-  matcher: ['/editor', '/projects'],
+  matcher: ['/editor'],
 };

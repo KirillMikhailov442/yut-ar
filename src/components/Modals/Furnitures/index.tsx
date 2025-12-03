@@ -2,7 +2,6 @@
 
 import { useModals } from '@/store/modals';
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import 'react-spring-bottom-sheet/dist/style.css';
 import styles from './Furnitures.module.scss';
 import { Input } from '@chakra-ui/react';
 import { useCatalog } from '@/store/catalog';

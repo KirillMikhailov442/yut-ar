@@ -1,6 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const apiComfortService = axios.create({
-    baseURL: 'https://api.comfortar.thescript.agency/v1/'
-})
-
+  baseURL: 'https://api.comfortar.thescript.agency/v1/',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});

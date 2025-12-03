@@ -1,55 +1,38 @@
-import React from 'react';
+'use client';
+
 import styles from './Projects.module.scss';
-import Image from 'next/image';
-import user_img from '@images/user.webp';
 import Link from 'next/link';
+import clsx from 'clsx';
+import { Plus } from 'lucide-react';
+import { useProjects } from '@/hooks/useProjects';
+import Loading from './Loading';
+import { useModals } from '@/store/modals';
 
 const ProjectScreen = () => {
+  const projects = useProjects();
+  const { openModal } = useModals();
+
+  if (projects.isLoading) return <Loading />;
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.navbar}>
-        <Link href={'/'}>
-          <h5>УЮТ AR</h5>
-        </Link>
-        <div className={styles.account}>
-          <Image
-            className={styles.avatar}
-            src={user_img}
-            width={35}
-            height={35}
-            alt="account"
-          />
-          <p className={styles.fullName}>Fake user</p>
-        </div>
-      </div>
-      <ul className={styles.grid}>
-        <li>
-          <Link href={'/editor/1'} className={styles.gridItem}>
-            Проект 1
-          </Link>
-        </li>
-        <li>
+    <ul className={styles.grid}>
+      {projects.data?.items.map(project => (
+        <li key={project.id}>
           <Link href={'/editor/2'} className={styles.gridItem}>
-            Проект 2
+            {project.title}
+            <br />
+            {`${project.width} x ${project.height}`}
           </Link>
         </li>
-        <li>
-          <Link href={'/editor/3'} className={styles.gridItem}>
-            Проект 3
-          </Link>
-        </li>
-        <li>
-          <Link href={'/editor/4'} className={styles.gridItem}>
-            Проект 4
-          </Link>
-        </li>
-        <li>
-          <Link href={'/editor/5'} className={styles.gridItem}>
-            Проект 5
-          </Link>
-        </li>
-      </ul>
-    </div>
+      ))}
+      <li>
+        <button
+          onClick={() => openModal('addProject')}
+          className={clsx(styles.gridItem, styles.add)}>
+          Создать <Plus size={20} />
+        </button>
+      </li>
+    </ul>
   );
 };
 

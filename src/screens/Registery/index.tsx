@@ -1,13 +1,14 @@
 'use client';
 
 import styles from './Registery.module.scss';
-import Input from '@/components/UI/Input';
 import Link from 'next/link';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { Button, Field, Input } from '@chakra-ui/react';
+import { useUserCreate, useUserLogin } from '@hooks/useUsers';
 
 const schema = z.object({
   name: z.string().min(1, 'Введите имя').max(16, 'Слишком длинное имя'),
@@ -22,56 +23,73 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const RegisteryScreen = () => {
+  const { replace } = useRouter();
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  const { replace } = useRouter();
+  const login = useUserLogin(data => {
+    Cookies.set('user', JSON.stringify(data.user));
+    Cookies.set('token', data.token);
+    replace('/projects');
+  });
+  const create = useUserCreate(() => {
+    login.mutate({
+      login: getValues('email'),
+      password: getValues('password'),
+    });
+  });
 
   return (
     <form
-      onSubmit={handleSubmit(() => {
-        // temporary measure
-        Cookies.set('user', 'authorized');
-        replace('/projects');
+      onSubmit={handleSubmit(({ name, surname, password, email }) => {
+        create.mutate({ name, surname, password, login: email });
       })}
       className={styles.form}>
       <h4 className={styles.title}>Регистрация</h4>
-      <div className="flex flex-col flex-grow gap-5 mt-10">
-        <Input
-          {...register('name')}
-          error={errors.name?.message}
-          placeholder="имя:"
-        />
-        <Input
-          {...register('surname')}
-          error={errors.surname?.message}
-          placeholder="фамилия:"
-        />
-        <Input
-          {...register('email')}
-          error={errors.email?.message}
-          type="email"
-          placeholder="адрес эл. почты:"
-        />
-        <Input
-          {...register('password')}
-          error={errors.password?.message}
-          type="password"
-          placeholder="пароль:"
-        />
-        <button
+      <div className="flex flex-col flex-grow gap-2 mt-10">
+        <Field.Root invalid={!!errors.name?.message}>
+          <Field.Label>Имя</Field.Label>
+          <Input {...register('name')} placeholder="Введите имя" />
+          <Field.ErrorText>{errors.name?.message}</Field.ErrorText>
+        </Field.Root>
+        <Field.Root invalid={!!errors.surname?.message}>
+          <Field.Label>Фамилия</Field.Label>
+          <Input {...register('surname')} placeholder="Введите фамилию" />
+          <Field.ErrorText>{errors.surname?.message}</Field.ErrorText>
+        </Field.Root>
+        <Field.Root invalid={!!errors.email?.message}>
+          <Field.Label>Адрес эл. пояты</Field.Label>
+          <Input {...register('email')} placeholder="Введите адрес эл. почты" />
+          <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+        </Field.Root>
+        <Field.Root invalid={!!errors.password?.message}>
+          <Field.Label>Пароль</Field.Label>
+          <Input
+            {...register('password')}
+            type="password"
+            placeholder="Введите пароль"
+          />
+          <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+        </Field.Root>
+        <Button
+          loading={create.isPending}
           disabled={Object.keys(errors).length > 0}
-          className={styles.button}>
-          Подтвердить
-        </button>
-        <p className="font-bold text-center mt-auto">
+          type="submit"
+          className="!mt-4"
+          bg="yellow.400"
+          color="black"
+          _hover={{ bg: 'yellow.500' }}>
+          Зарегистрироваться
+        </Button>
+        <p className="font-bold text-center !mt-3">
           Есть аккаунт?{' '}
-          <Link className="text-[var(--yellow)]" href={'/login'}>
+          <Link className="!text-[var(--yellow)]" href={'/login'}>
             Войти
           </Link>
         </p>

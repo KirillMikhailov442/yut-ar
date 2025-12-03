@@ -1,30 +1,35 @@
 import { apiComfortService } from '../config';
-import { IProject, IProjectCreate, IProjectUpdate } from '@/types/Project';
+import {
+  IProjectCreate,
+  IProjectUpdate,
+  ProjectResponse,
+  ProjectsResponse,
+} from '@/types/Project';
 
 class ProjectService {
   private readonly baseUrl = '/project';
 
   public create(body: IProjectCreate) {
     return apiComfortService
-      .post<IProject>(this.baseUrl, body)
+      .post<ProjectResponse>(this.baseUrl, body)
       .then(res => res.data);
   }
 
   public update(body: IProjectUpdate, id: number) {
     return apiComfortService
-      .put<IProject>(`${this.baseUrl}/${id}`, body)
+      .put<ProjectResponse>(`${this.baseUrl}/${id}`, body)
       .then(res => res.data);
   }
 
   public findAll() {
     return apiComfortService
-      .get<IProject[]>(this.baseUrl)
+      .get<ProjectsResponse>(this.baseUrl)
       .then(res => res.data);
   }
 
   public findById(id: number) {
     return apiComfortService
-      .get<IProject>(`${this.baseUrl}/${id}`)
+      .get<ProjectResponse>(`${this.baseUrl}/${id}`)
       .then(res => res.data);
   }
 

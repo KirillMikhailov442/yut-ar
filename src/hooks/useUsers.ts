@@ -1,6 +1,13 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import userService from '@/api/services/user';
-import { IUser, IUserCreate, IUserUpdate } from '@/types/User';
+import {
+  ILogin,
+  IUser,
+  IUserCreate,
+  IUserUpdate,
+  LoginResponse,
+  UserResponse,
+} from '@/types/User';
 
 export const useUsers = () => {
   return useQuery({
@@ -30,7 +37,7 @@ export const useUserCreate = (
 };
 
 export const useUserUpdate = (
-  onSuccess?: (data: IUser) => void,
+  onSuccess?: (data: UserResponse) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({
@@ -58,5 +65,17 @@ export const useUserProfile = () => {
   return useQuery({
     queryKey: ['user', 'profile'],
     queryFn: () => userService.profile(),
+  });
+};
+
+export const useUserLogin = (
+  onSuccess?: (data: LoginResponse) => void,
+  onError?: ({ message }: { message: string }) => void,
+) => {
+  return useMutation({
+    mutationKey: ['user', 'login'],
+    mutationFn: (body: ILogin) => userService.login(body),
+    onSuccess,
+    onError,
   });
 };

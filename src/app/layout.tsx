@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import '@styles/global.scss';
 import '@styles/fonts.scss';
-import { ConfigProvider } from 'antd';
 import {
   PUBLISHED,
   SITE_DESCRIPTION,
   SITE_KEY_WORDS,
   SITE_NAME,
 } from '@/configs/seo';
+import Providers from '@/components/layouts/Providers';
+import 'react-spring-bottom-sheet/dist/style.css';
 
 export const metadata: Metadata = {
   title: {
@@ -47,15 +48,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          fontFamily: 'Bureau, sans-serif',
-        },
-      }}>
+    <Providers>
       <html lang="ru">
         <body>{children}</body>
       </html>
-    </ConfigProvider>
+    </Providers>
   );
 }
