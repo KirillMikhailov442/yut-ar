@@ -18,42 +18,46 @@ const List: FC<ListProps> = ({ title, items }) => {
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   useEffect(() => {
-    gsap.fromTo(
-      titleRef.current,
-      {
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 769px)', () => {
+      gsap.fromTo(
+        titleRef.current,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+            once: true,
+          },
+        },
+      );
+
+      gsap.from(itemRefs.current, {
         opacity: 0,
         y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out',
         scrollTrigger: {
-          trigger: titleRef.current,
+          trigger: containerRef.current,
           start: 'top 80%',
           end: 'top 20%',
           toggleActions: 'play none none reverse',
-          scrub: true,
           once: true,
         },
-      },
-    );
-
-    gsap.from(itemRefs.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 80%',
-        end: 'top 20%',
-        toggleActions: 'play none none reverse',
-        once: true,
-      },
+      });
     });
   }, []);
 

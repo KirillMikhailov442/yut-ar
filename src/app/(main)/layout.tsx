@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { useMediaQuery } from '@chakra-ui/react';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -17,17 +18,28 @@ const MainLayout = ({
   children: React.ReactNode;
 }>) => {
   const { modals, closeModal } = useModals();
+  const [isTablet] = useMediaQuery(['(max-width: 769px)']);
 
   useEffect(() => {
-    ScrollSmoother.create({
-      wrapper: '#smooth-wrapper',
-      content: '#smooth-content',
-      smooth: 1.3,
-      effects: true,
-      normalizeScroll: true,
-      ignoreMobileResize: true,
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 769px)', () => {
+      ScrollSmoother.create({
+        wrapper: '#smooth-wrapper',
+        content: '#smooth-content',
+        smooth: 1.3,
+        effects: true,
+        normalizeScroll: true,
+        ignoreMobileResize: true,
+      });
+
+      return () => {
+        ScrollSmoother.get()?.kill();
+      };
     });
-  }, []);
+
+    return () => mm.revert();
+  }, [isTablet]);
 
   return (
     <div id="smooth-wrapper">

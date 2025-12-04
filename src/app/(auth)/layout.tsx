@@ -14,7 +14,7 @@ const AuthLayout = ({
             НА ГЛАВНУЮ
           </Link>
         </header>
-        <div className="flex-grow flex p-8 max-lg:p-4">{children}</div>
+        <div className="flex-grow flex p-8 max-lg:p-4 !mx-4">{children}</div>
       </div>
     </Provider>
   );

@@ -14,51 +14,55 @@ const Footer = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      titleRef.current,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
+    const mm = gsap.matchMedia();
 
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-          scrub: true,
-          once: true,
+    mm.add('(min-width: 769px)', () => {
+      gsap.fromTo(
+        titleRef.current,
+        {
+          opacity: 0,
+          y: 50,
         },
-      },
-    );
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
 
-    gsap.fromTo(
-      subtitleRef.current,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-
-        scrollTrigger: {
-          trigger: subtitleRef.current,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-          scrub: true,
-          once: true,
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+            once: true,
+          },
         },
-      },
-    );
+      );
+
+      gsap.fromTo(
+        subtitleRef.current,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+
+          scrollTrigger: {
+            trigger: subtitleRef.current,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+            once: true,
+          },
+        },
+      );
+    });
   }, []);
 
   return (

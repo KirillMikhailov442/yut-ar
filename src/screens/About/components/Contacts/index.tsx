@@ -8,16 +8,20 @@ const Contacts = () => {
   const contactsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.from(contactsRef.current, {
-      opacity: 0,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: contactsRef.current,
-        start: '30% bottom',
-        end: '70% bottom',
-        toggleActions: 'play none none none',
-        once: true,
-      },
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 769px)', () => {
+      gsap.from(contactsRef.current, {
+        opacity: 0,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: contactsRef.current,
+          start: '30% bottom',
+          end: '70% bottom',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      });
     });
   }, []);
 

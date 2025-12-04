@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Hero.module.scss';
 import chair_img from '@images/chair.svg';
 import line_img from '@images/bg-lines.png';

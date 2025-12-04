@@ -13,96 +13,100 @@ const About = () => {
   const rightTextRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      titleRef.current,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-          scrub: true,
-          once: true,
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 769px)', () => {
+      gsap.fromTo(
+        titleRef.current,
+        {
+          opacity: 0,
+          y: 50,
         },
-      },
-    );
-
-    gsap.fromTo(
-      subtitleRef.current,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-
-        scrollTrigger: {
-          trigger: subtitleRef.current,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-          scrub: true,
-          once: true,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+            once: true,
+          },
         },
-      },
-    );
+      );
 
-    gsap.fromTo(
-      leftTextRef.current,
-      {
-        opacity: 0,
-        x: -50,
-      },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: 'power3.out',
-
-        scrollTrigger: {
-          trigger: leftTextRef.current,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-          scrub: true,
-          once: true,
+      gsap.fromTo(
+        subtitleRef.current,
+        {
+          opacity: 0,
+          y: 50,
         },
-      },
-    );
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
 
-    gsap.fromTo(
-      rightTextRef.current,
-      {
-        opacity: 0,
-        x: -50,
-      },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: 'power3.out',
-
-        scrollTrigger: {
-          trigger: rightTextRef.current,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-          scrub: true,
-          once: true,
+          scrollTrigger: {
+            trigger: subtitleRef.current,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+            once: true,
+          },
         },
-      },
-    );
+      );
+
+      gsap.fromTo(
+        leftTextRef.current,
+        {
+          opacity: 0,
+          x: -50,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'power3.out',
+
+          scrollTrigger: {
+            trigger: leftTextRef.current,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        rightTextRef.current,
+        {
+          opacity: 0,
+          x: -50,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'power3.out',
+
+          scrollTrigger: {
+            trigger: rightTextRef.current,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+            once: true,
+          },
+        },
+      );
+    });
   }, []);
 
   return (

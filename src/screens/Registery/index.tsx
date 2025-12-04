@@ -48,7 +48,12 @@ const RegisteryScreen = () => {
   return (
     <form
       onSubmit={handleSubmit(({ name, surname, password, email }) => {
-        create.mutate({ name, surname, password, login: email });
+        create.mutate({
+          name,
+          surname,
+          password: password.charAt(0).toUpperCase() + password.slice(1),
+          login: email,
+        });
       })}
       className={styles.form}>
       <h4 className={styles.title}>Регистрация</h4>
