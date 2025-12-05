@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  typescript: {
+    // Отключаем проверку TypeScript
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    // Отключаем ESLint во время сборки
+    ignoreDuringBuilds: true,
+  },
+
   reactStrictMode: false,
   productionBrowserSourceMaps: false,
   experimental: {

@@ -4,7 +4,7 @@ import { IProject } from "@/types/Project";
 import Link from "next/link";
 import Image from "next/image";
 
-const Item: FC<IProject> = ({ id, title, width, height, preview }) => {
+const Item: FC<IProject> = ({ id, title, preview }) => {
   return (
     <li className={styles.itemWrapper}>
       <Link href={`/editor/${id}`} className={styles.gridItem}>

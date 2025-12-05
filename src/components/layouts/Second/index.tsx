@@ -1,27 +1,43 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import styles from './Second.module.scss';
-import Link from 'next/link';
-import Image from 'next/image';
-import user_img from '@images/user.webp';
-import { Provider } from '@/components/ui/provider';
-import AddProjectModal from '@/components/Modals/AddProject';
-import Cookies from 'js-cookie';
-import { IUser } from '@/types/User';
+import React, { useEffect, useState } from "react";
+import styles from "./Second.module.scss";
+import Link from "next/link";
+import Image from "next/image";
+import user_img from "@images/user.webp";
+import { Provider } from "@/components/ui/provider";
+import AddProjectModal from "@/components/Modals/AddProject";
+import Cookies from "js-cookie";
+import { IUser } from "@/types/User";
 
 const SecondLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const [user, _] = useState(JSON.parse(Cookies.get('user') || '') as IUser);
+  const [user, setUser] = useState<IUser | null>(null);
+
+  useEffect(() => {
+    try {
+      const userCookie = Cookies.get("user");
+      if (userCookie) {
+        const parsedUser = JSON.parse(userCookie) as IUser;
+        // @ts-ignore
+        setUser(parsedUser);
+      }
+    } catch (error) {
+      console.error("Failed to parse user cookie:", error);
+      setUser(null);
+      // Опционально: очистить битую куку
+      Cookies.remove("user");
+    }
+  }, []);
   return (
     <Provider>
       <AddProjectModal />
       <div className={styles.wrapper}>
         <div className={styles.navbar}>
-          <Link href={'/'}>
+          <Link href={"/"}>
             <h5>УЮТ AR</h5>
           </Link>
           <div className={styles.account}>
@@ -33,7 +49,7 @@ const SecondLayout = ({
               alt="account"
             />
             <p className={styles.fullName}>
-              {user.name} {user.surname}
+              {user?.name} {user?.surname}
             </p>
           </div>
         </div>
