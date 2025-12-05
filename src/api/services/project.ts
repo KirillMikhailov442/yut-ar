@@ -1,5 +1,6 @@
 import { apiComfortService } from '../config';
 import {
+  IProject,
   IProjectCreate,
   IProjectUpdate,
   ProjectResponse,
@@ -11,7 +12,7 @@ class ProjectService {
 
   public create(body: IProjectCreate) {
     return apiComfortService
-      .post<ProjectResponse>(this.baseUrl, body)
+      .post<IProject>(this.baseUrl, body)
       .then(res => res.data);
   }
 
@@ -29,7 +30,7 @@ class ProjectService {
 
   public findById(id: number) {
     return apiComfortService
-      .get<ProjectResponse>(`${this.baseUrl}/${id}`)
+      .get<IProject>(`${this.baseUrl}/${id}`)
       .then(res => res.data);
   }
 

@@ -4,12 +4,15 @@ export interface IProject {
   id: number;
   title: string;
   description: string;
-  preview: string;
+  preview?: string;
   width: number;
   height: number;
 }
 
-export type IProjectCreate = Omit<IProject, 'id'>;
+export type IProjectCreate = Pick<
+  IProject,
+  'title' | 'description' | 'preview'
+>;
 
 export type IProjectUpdate = Omit<IProject, 'id'>;
 

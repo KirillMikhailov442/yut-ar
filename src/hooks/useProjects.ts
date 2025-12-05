@@ -1,5 +1,6 @@
 import projectService from '@/api/services/project';
 import {
+  IProject,
   IProjectCreate,
   IProjectUpdate,
   ProjectResponse,
@@ -22,7 +23,7 @@ export const useProject = (id: number) => {
 };
 
 export const useProjectCreate = (
-  onSuccess?: (data: ProjectResponse) => void,
+  onSuccess?: (data: IProject) => void,
   onError?: ({ message }: { message: string }) => void,
 ) => {
   return useMutation({

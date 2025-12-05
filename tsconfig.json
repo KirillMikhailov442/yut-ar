@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,34 +15,74 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "paths":{
-      "@components/*":["./src/components/*"],
-      "@UI/*":["./src/components/UI/*"],
-      "@layouts/*":["./src/components/layouts/*"],
-      "@store/*":["./src/store/*"],
-      "@styles/*":["./src/styles/*"],
-      "@screens/*":["./src/screens/*"],
-      "@api/*": ["./src/api/*"],
-      "@services/*":["./src/api/services/*"],
-      "@configs/*": ["./src/configs/*"],
-      "@hooks/*":["./src/hooks/*"],
-      "@assets/*":["./src/assets/*"],
-      "@fonts/*":["./src/assets/fonts/*"],
-      "@images/*":["./src/assets/images/*"],
-      "@videos/*":["./src/assets/videos/*"],
-      "@sounds/*":["./src/assets/sounds/*"],
-      "@helpers/*":["./src/helpers/*"],
-      "@constants/*":["./src/constants/*"],
-      "@types/*":["./src/types/*"],
-      "@public/*": ["./public/*"],
-      "@/*":["./src/*"],
+    "paths": {
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@UI/*": [
+        "./src/components/UI/*"
+      ],
+      "@layouts/*": [
+        "./src/components/layouts/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@screens/*": [
+        "./src/screens/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ],
+      "@services/*": [
+        "./src/api/services/*"
+      ],
+      "@configs/*": [
+        "./src/configs/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@fonts/*": [
+        "./src/assets/fonts/*"
+      ],
+      "@images/*": [
+        "./src/assets/images/*"
+      ],
+      "@videos/*": [
+        "./src/assets/videos/*"
+      ],
+      "@sounds/*": [
+        "./src/assets/sounds/*"
+      ],
+      "@helpers/*": [
+        "./src/helpers/*"
+      ],
+      "@constants/*": [
+        "./src/constants/*"
+      ],
+      "@public/*": [
+        "./public/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
+      "@types/*": [
+        "./src/types/*"
+      ]
     }
   },
   "include": [
@@ -49,5 +93,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -6,4 +6,5 @@ export interface IFurniture {
   height: number;
   title: string;
   rotation: number;
+  img?: string;
 }

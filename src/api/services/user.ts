@@ -14,7 +14,11 @@ class UserService {
 
   public create(body: IUserCreate) {
     return apiComfortService
-      .post<IUser>(this.baseUrl, body)
+      .post<IUser>(this.baseUrl, body, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then(res => res.data);
   }
 
