@@ -9,6 +9,7 @@ import { Provider } from "@/components/ui/provider";
 import AddProjectModal from "@/components/Modals/AddProject";
 import Cookies from "js-cookie";
 import { IUser } from "@/types/User";
+import { LightMode } from "@components/ui/color-mode";
 
 const SecondLayout = ({
   children,
@@ -34,27 +35,29 @@ const SecondLayout = ({
   }, []);
   return (
     <Provider>
-      <AddProjectModal />
-      <div className={styles.wrapper}>
-        <div className={styles.navbar}>
-          <Link href={"/"}>
-            <h5>УЮТ AR</h5>
-          </Link>
-          <div className={styles.account}>
-            <Image
-              className={styles.avatar}
-              src={user_img}
-              width={35}
-              height={35}
-              alt="account"
-            />
-            <p className={styles.fullName}>
-              {user?.name} {user?.surname}
-            </p>
+      <LightMode>
+        <AddProjectModal />
+        <div className={styles.wrapper}>
+          <div className={styles.navbar}>
+            <Link href={"/"}>
+              <h5>УЮТ AR</h5>
+            </Link>
+            <div className={styles.account}>
+              <Image
+                className={styles.avatar}
+                src={user_img}
+                width={35}
+                height={35}
+                alt="account"
+              />
+              <p className={styles.fullName}>
+                {user?.name} {user?.surname}
+              </p>
+            </div>
           </div>
+          {children}
         </div>
-        {children}
-      </div>
+      </LightMode>
     </Provider>
   );
 };

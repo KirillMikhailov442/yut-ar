@@ -148,8 +148,8 @@ const AddProjectModal = () => {
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content>
-            <Dialog.Header className="flex items-cente justify-between">
+          <Dialog.Content className="!bg-[var(--white)]">
+            <Dialog.Header className="flex items-center justify-between">
               <b className="!text-lg">Создать проект</b>
               <button
                 className={"p-3"}

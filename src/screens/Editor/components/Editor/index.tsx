@@ -102,8 +102,8 @@ const Editor = () => {
           placeholder="Высота:"
           size={'xs'}
           defaultValue={size.height}
-          min={400}
-          max={600}
+          min={200}
+          max={1000}
           onChange={e => {
             setSizeHeight(Number(e.target.value));
           }}
@@ -114,8 +114,8 @@ const Editor = () => {
           type="number"
           placeholder="Ширина:"
           size={'xs'}
-          min={300}
-          max={1200}
+          min={200}
+          max={1000}
           step={CELL_SIZE}
           defaultValue={size.width}
           onChange={e => {

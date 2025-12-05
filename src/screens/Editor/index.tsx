@@ -5,7 +5,6 @@ import Catalog from "./components/Catalog";
 import Editor from "./components/Editor";
 import { Splitter, useMediaQuery } from "@chakra-ui/react";
 import { useState } from "react";
-import FurnituresSheet from "@components/Modals/Furnitures";
 import { ArrowRightFromLine } from "lucide-react";
 const EditorScreen = () => {
   const [isLaptop] = useMediaQuery(["(max-width: 1024px)"]);
@@ -18,7 +17,6 @@ const EditorScreen = () => {
           <NavBar />
           <Editor />
         </div>
-        <FurnituresSheet />
       </>
     );
   }
@@ -59,7 +57,6 @@ const EditorScreen = () => {
           <Editor />
         </Splitter.Panel>
       </Splitter.Root>
-      <FurnituresSheet />
     </div>
   );
 };

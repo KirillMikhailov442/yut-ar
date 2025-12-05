@@ -1,5 +1,6 @@
 'use client';
 
+import 'react-spring-bottom-sheet/dist/style.css';
 import { useModals } from '@/store/modals';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import styles from './Furnitures.module.scss';
@@ -8,14 +9,11 @@ import { useCatalog } from '@/store/catalog';
 import product_img from '@images/chair.svg';
 import Image from 'next/image';
 import { useEditor } from '@/store/editor';
-import 'react-spring-bottom-sheet/dist/style.css';
 
 const FurnituresSheet = () => {
   const { modals, closeModal } = useModals();
   const { furnitures, removeFurniture } = useCatalog();
   const { addFurniture } = useEditor();
-
-  console.log(modals.furnitures);
 
   return (
     <BottomSheet

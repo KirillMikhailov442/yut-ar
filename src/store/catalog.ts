@@ -3,7 +3,9 @@ import { create } from "zustand";
 
 interface EditorStore {
   furnitures: IFurniture[];
+  activeFurniture: number;
   setFurnitures: (furnitures: IFurniture[]) => void;
+  setActiveFurniture: (id: number) => void;
   addFurniture: (furniture: IFurniture) => void;
   removeFurniture: (id: number) => void;
   findFurnitureById: (id: number) => IFurniture | undefined;
@@ -22,8 +24,13 @@ export const useCatalog = create<EditorStore>((set, get) => ({
     },
   ],
 
+  activeFurniture: 0,
+
   setFurnitures: (furnitures: IFurniture[]) =>
     set((state) => ({ ...state, furnitures })),
+
+  setActiveFurniture: (id) =>
+    set((state) => ({ ...state, activeFurniture: id })),
 
   findFurnitureById: (id) => get().furnitures.find((item) => item.id === id),
 
