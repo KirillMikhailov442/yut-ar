@@ -1,12 +1,20 @@
-import { FC, useEffect, useState } from 'react';
-import { IFurniture } from '@/types/Furniture';
-import { Group, Image, Rect } from 'react-konva';
-import { useEditor } from '@/store/editor';
-import { CELL_SIZE } from '@/constants/cell';
-import user_img from '@images/chair.svg';
-import { STEP_ANGLE } from '@/constants/angle';
+import { FC, useEffect, useState } from "react";
+import { IFurniture } from "@/types/Furniture";
+import { Group, Image, Rect } from "react-konva";
+import { useEditor } from "@/store/editor";
+import { CELL_SIZE } from "@/constants/cell";
+import user_img from "@images/chair.svg";
+import { STEP_ANGLE } from "@/constants/angle";
 
-const Furniture: FC<IFurniture> = ({ id, x, y, width, height, rotation }) => {
+const Furniture: FC<IFurniture> = ({
+  id,
+  x,
+  y,
+  width,
+  height,
+  rotation,
+  img,
+}) => {
   const {
     setActiveFurniture,
     setDragging,
@@ -23,9 +31,9 @@ const Furniture: FC<IFurniture> = ({ id, x, y, width, height, rotation }) => {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
 
   useEffect(() => {
-    const imageSrc = user_img.src;
+    const imageSrc = img || user_img.src;
     if (imageSrc) {
-      const img = new window.Image(user_img.width, user_img.height);
+      const img = new window.Image(width, height);
       img.src = imageSrc;
       img.onload = () => {
         setImage(img);
@@ -51,21 +59,21 @@ const Furniture: FC<IFurniture> = ({ id, x, y, width, height, rotation }) => {
       rotation={currentRotation}
       draggable
       onTransformStart={() => setDragging(true)}
-      onTransformEnd={event => {
+      onTransformEnd={(event) => {
         const newRotation = snapRotation(event.target.rotation());
         setCurrentRotation(newRotation);
         setFurnitureRotation(id, newRotation);
         setDragging(false);
       }}
-      onClick={e => {
+      onClick={(e) => {
         e.cancelBubble = true;
         setActiveFurniture(id);
       }}
-      onTap={e => {
+      onTap={(e) => {
         e.cancelBubble = true;
         setActiveFurniture(id);
       }}
-      onDragEnd={event => {
+      onDragEnd={(event) => {
         const newX = snapToGrid(event.target.x());
         const newY = snapToGrid(event.target.y());
 
@@ -78,7 +86,7 @@ const Furniture: FC<IFurniture> = ({ id, x, y, width, height, rotation }) => {
         setIsDragging(false);
         setActiveFurniture(0);
       }}
-      dragBoundFunc={pos => {
+      dragBoundFunc={(pos) => {
         let newX = snapToGrid(pos.x);
         let newY = snapToGrid(pos.y);
 
@@ -93,7 +101,7 @@ const Furniture: FC<IFurniture> = ({ id, x, y, width, height, rotation }) => {
           y: newY,
         };
       }}
-      onDragMove={event => {
+      onDragMove={(event) => {
         const newX = snapToGrid(event.target.x());
         const newY = snapToGrid(event.target.y());
 
@@ -121,17 +129,18 @@ const Furniture: FC<IFurniture> = ({ id, x, y, width, height, rotation }) => {
         setDragging(true);
         setIsDragging(true);
         setActiveFurniture(id);
-      }}>
+      }}
+    >
       <Rect
         width={width}
         height={height}
-        fill={isDragging ? '#DDD9D9' : '#fff'}
+        fill={"#fff"}
         stroke={
           isCollision
-            ? '#CA2A30'
+            ? "#CA2A30"
             : activeFurniture == id
-            ? '#efbc18'
-            : '#DDD9D9'
+            ? "#efbc18"
+            : "#DDD9D9"
         }
       />
       {image && (

@@ -1,6 +1,6 @@
-import { CELL_SIZE } from '@/constants/cell';
-import { IFurniture } from '@/types/Furniture';
-import { create } from 'zustand';
+import { CELL_SIZE } from "@/constants/cell";
+import { IFurniture } from "@/types/Furniture";
+import { create } from "zustand";
 
 interface EditorStore {
   activeFurniture: number;
@@ -25,17 +25,7 @@ interface EditorStore {
 export const useEditor = create<EditorStore>((set, get) => ({
   activeFurniture: 0,
   isDragging: false,
-  furnitures: [
-    {
-      id: 1,
-      title: 'A',
-      x: CELL_SIZE * 4,
-      y: CELL_SIZE * 4,
-      width: 100,
-      height: 100,
-      rotation: 0,
-    },
-  ],
+  furnitures: [],
 
   size: {
     width: 1000,
@@ -43,42 +33,47 @@ export const useEditor = create<EditorStore>((set, get) => ({
   },
 
   setSize: (width, height) =>
-    set(state => ({ ...state, size: { width, height } })),
+    set((state) => ({ ...state, size: { width, height } })),
 
-  setSizeWidth: width =>
-    set(state => ({ ...state, size: { ...state.size, width } })),
+  setSizeWidth: (width) =>
+    set((state) => ({ ...state, size: { ...state.size, width } })),
 
-  setSizeHeight: height =>
-    set(state => ({ ...state, size: { ...state.size, height } })),
+  setSizeHeight: (height) =>
+    set((state) => ({ ...state, size: { ...state.size, height } })),
 
-  setDragging: dragging => set(state => ({ ...state, isDragging: dragging })),
+  setDragging: (dragging) =>
+    set((state) => ({ ...state, isDragging: dragging })),
 
   setFurniturePosition: (id, x, y) =>
-    set(state => ({
+    set((state) => ({
       ...state,
-      furnitures: state.furnitures.map(item =>
-        item.id === id ? { ...item, x, y } : item,
+      furnitures: state.furnitures.map((item) =>
+        item.id === id ? { ...item, x, y } : item
       ),
     })),
 
   setFurnitureRotation: (id, rotation) =>
-    set(state => ({
+    set((state) => ({
       ...state,
-      furnitures: state.furnitures.map(item =>
-        item.id === id ? { ...item, rotation } : item,
+      furnitures: state.furnitures.map((item) =>
+        item.id === id ? { ...item, rotation } : item
       ),
     })),
 
-  setActiveFurniture: id => set(state => ({ ...state, activeFurniture: id })),
+  setActiveFurniture: (id) =>
+    set((state) => ({ ...state, activeFurniture: id })),
 
-  findFurnitureById: id => get().furnitures.find(item => item.id === id),
+  findFurnitureById: (id) => get().furnitures.find((item) => item.id === id),
 
-  addFurniture: furniture =>
-    set(state => ({ ...state, furnitures: [...state.furnitures, furniture] })),
-
-  removeFurniture: id =>
-    set(state => ({
+  addFurniture: (furniture) =>
+    set((state) => ({
       ...state,
-      furnitures: state.furnitures.filter(item => item.id !== id),
+      furnitures: [...state.furnitures, furniture],
+    })),
+
+  removeFurniture: (id) =>
+    set((state) => ({
+      ...state,
+      furnitures: state.furnitures.filter((item) => item.id !== id),
     })),
 }));

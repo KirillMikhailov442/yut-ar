@@ -15,6 +15,7 @@ import { useProject } from "@hooks/useProjects";
 import LoadingScreen from "@screens/Loading";
 import { useParams } from "next/navigation";
 import { FC, ReactNode, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const EditorLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const furnituresEditor = useEditor();
@@ -27,8 +28,7 @@ const EditorLayout: FC<{ children: ReactNode }> = ({ children }) => {
     if (project.isError) return;
 
     if (project.data) {
-      // TODO: заменить на данные из ответа
-      furnituresEditor.setSize(400, 400);
+      furnituresEditor.setSize(project.data.width, project.data.height);
     }
   }, [project.isPending]);
 
@@ -46,10 +46,16 @@ const EditorLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
         const x = Number(active.rect.current.translated?.left) - over.rect.left;
         const y = Number(active.rect.current.translated?.top) - over.rect.top;
-        const width = Math.round(data.width / CELL_SIZE) * CELL_SIZE;
-        const height = Math.round(data.height / CELL_SIZE) * CELL_SIZE;
+        let width = Math.round(data.width / CELL_SIZE / 5) * CELL_SIZE;
+        let height = Math.round(data.height / CELL_SIZE / 5) * CELL_SIZE;
+
+        if (width < 100) width = 100;
+        if (height < 100) height = 100;
+
         furnituresEditor.addFurniture({
           ...data,
+          // @ts-ignore
+          id: `${data.id}-${uuidv4()}`,
           x,
           y,
           width,
