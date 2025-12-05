@@ -8,7 +8,6 @@ import {
   SITE_NAME,
 } from '@/configs/seo';
 import Providers from '@/components/layouts/Providers';
-import 'react-spring-bottom-sheet/dist/style.css';
 
 export const metadata: Metadata = {
   title: {

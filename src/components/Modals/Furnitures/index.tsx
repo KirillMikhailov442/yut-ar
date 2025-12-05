@@ -8,14 +8,17 @@ import { useCatalog } from '@/store/catalog';
 import product_img from '@images/chair.svg';
 import Image from 'next/image';
 import { useEditor } from '@/store/editor';
+import 'react-spring-bottom-sheet/dist/style.css';
 
 const FurnituresSheet = () => {
   const { modals, closeModal } = useModals();
   const { furnitures, removeFurniture } = useCatalog();
   const { addFurniture } = useEditor();
+
+  console.log(modals.furnitures);
+
   return (
     <BottomSheet
-      className={styles.sheet}
       header={<h5>Каталог</h5>}
       snapPoints={({ maxHeight }) => [maxHeight * 0.9]}
       open={modals.furnitures}

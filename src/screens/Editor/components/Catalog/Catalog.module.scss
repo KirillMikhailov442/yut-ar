@@ -3,14 +3,14 @@
   flex-direction: column;
   margin: 1rem;
   font-family: 'Bureau', sans-serif;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .categories {
   height: 50px;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 8px;
   overflow-x: scroll;
 
   &::-webkit-scrollbar {
@@ -18,13 +18,18 @@
   }
 
   &Item {
-    padding: 0.2rem 0.4rem;
+    padding: 0.2rem 0.3rem;
+    font-size: 14px;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.25s ease;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &Active {
+      background-color: var(--yellow) !important;
     }
   }
 }

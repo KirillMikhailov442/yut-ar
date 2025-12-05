@@ -1,8 +1,9 @@
-import { IFurniture } from '@/types/Furniture';
-import { create } from 'zustand';
+import { IFurniture } from "@/types/Furniture";
+import { create } from "zustand";
 
 interface EditorStore {
   furnitures: IFurniture[];
+  setFurnitures: (furnitures: IFurniture[]) => void;
   addFurniture: (furniture: IFurniture) => void;
   removeFurniture: (id: number) => void;
   findFurnitureById: (id: number) => IFurniture | undefined;
@@ -12,7 +13,7 @@ export const useCatalog = create<EditorStore>((set, get) => ({
   furnitures: [
     {
       id: 2,
-      title: 'A',
+      title: "A",
       x: 10,
       y: 10,
       width: 100,
@@ -21,14 +22,20 @@ export const useCatalog = create<EditorStore>((set, get) => ({
     },
   ],
 
-  findFurnitureById: id => get().furnitures.find(item => item.id === id),
+  setFurnitures: (furnitures: IFurniture[]) =>
+    set((state) => ({ ...state, furnitures })),
 
-  addFurniture: furniture =>
-    set(state => ({ ...state, furnitures: [...state.furnitures, furniture] })),
+  findFurnitureById: (id) => get().furnitures.find((item) => item.id === id),
 
-  removeFurniture: id =>
-    set(state => ({
+  addFurniture: (furniture) =>
+    set((state) => ({
       ...state,
-      furnitures: state.furnitures.filter(item => item.id !== id),
+      furnitures: [...state.furnitures, furniture],
+    })),
+
+  removeFurniture: (id) =>
+    set((state) => ({
+      ...state,
+      furnitures: state.furnitures.filter((item) => item.id !== id),
     })),
 }));

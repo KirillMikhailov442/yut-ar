@@ -133,7 +133,6 @@ const Furniture: FC<IFurniture> = ({ id, x, y, width, height, rotation }) => {
             ? '#efbc18'
             : '#DDD9D9'
         }
-        strokeWidth={activeFurniture == id ? 3 : 1}
       />
       {image && (
         <Image
