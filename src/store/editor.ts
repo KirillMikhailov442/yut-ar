@@ -70,8 +70,8 @@ export const useEditor = create<EditorStore>((set, get) => ({
 
   addFurniture: furniture =>
     set(state => {
-      let width = Math.round(furniture.width / CELL_SIZE / 5) * CELL_SIZE;
-      let height = Math.round(furniture.height / CELL_SIZE / 5) * CELL_SIZE;
+      let width = Math.round(furniture.width / CELL_SIZE) * CELL_SIZE;
+      let height = Math.round(furniture.height / CELL_SIZE) * CELL_SIZE;
       const id = `${furniture.id}@${uuidv4()}`;
 
       if (width < 100) width = 100;
