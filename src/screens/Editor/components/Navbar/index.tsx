@@ -17,13 +17,12 @@ const NavBar = () => {
   const { openModal, modals } = useModals();
   const [user, _] = useState(JSON.parse(Cookies.get('user') || '') as IUser);
   const editor = useEditor();
-  const [price, setPrice] = useState(0);
 
-  useEffect(() => {
-    const newPrice = editor.furnitures.reduce((acc, item) => {
-      return acc + Number(item.cost);
+  const price = useMemo(() => {
+    return editor.furnitures.reduce((acc, item) => {
+      const cost = Number(item?.cost) || 0;
+      return acc + cost;
     }, 0);
-    setPrice(newPrice);
   }, [editor.furnitures]);
 
   return (
