@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import '@styles/global.scss';
-import '@styles/fonts.scss';
 import {
   PUBLISHED,
   SITE_DESCRIPTION,

@@ -13,6 +13,7 @@ import { useEffect, useRef } from 'react';
 import { STEP_ANGLE } from '@/constants/angle';
 import type { Transformer as TransformerType } from 'konva/lib/shapes/Transformer';
 import type { Stage as StageType } from 'konva/lib/Stage';
+import { useProjectToProductUpdate } from '@hooks/useProjectToProduct';
 
 const Editor = () => {
   const {
@@ -24,7 +25,9 @@ const Editor = () => {
     setSizeWidth,
     setActiveFurniture,
     setFurnitureRotation,
+    findFurnitureById,
   } = useEditor();
+  const projectToProducts = useProjectToProductUpdate();
 
   const { setNodeRef } = useDroppable({
     id: 'editor',
@@ -63,6 +66,10 @@ const Editor = () => {
         width={size.width}
         height={size.height}
         className={clsx(styles.stage, isDragging && styles.stageActive)}
+        onDragEnd={e => {
+          console.log(findFurnitureById(activeFurniture));
+          const [id] = String(activeFurniture).split('@');
+        }}
         onMouseDown={e => {
           const target = e.target as StageType;
           if (target === target.getStage()) {

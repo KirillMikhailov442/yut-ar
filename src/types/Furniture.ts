@@ -7,4 +7,5 @@ export interface IFurniture {
   title: string;
   rotation: number;
   img?: string;
+  cost: string;
 }

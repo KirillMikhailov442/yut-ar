@@ -6,6 +6,7 @@ import { CELL_SIZE } from '@/constants/cell';
 import user_img from '@images/chair.svg';
 import { STEP_ANGLE } from '@/constants/angle';
 import { useCatalog } from '@store/catalog';
+import { useProjectToProductDelete } from '@hooks/useProjectToProduct';
 
 const Furniture: FC<IFurniture> = ({
   id,
@@ -32,6 +33,7 @@ const Furniture: FC<IFurniture> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [isCollision, setIsCollision] = useState(false);
   const [image, setImage] = useState<HTMLImageElement | null>(null);
+  const removeProduct = useProjectToProductDelete();
 
   useEffect(() => {
     const imageSrc = img || user_img.src;
@@ -150,13 +152,14 @@ const Furniture: FC<IFurniture> = ({
       {activeFurniture == id && (
         <Circle
           radius={10}
-          x={width}
-          y={0}
+          x={width - 10}
+          y={10}
           width={20}
           height={20}
           fill={'red'}
           stroke={'red'}
           onClick={() => {
+            removeFurniture(0);
             setActiveFurniture(0);
             removeFurniture(id);
           }}

@@ -15,6 +15,7 @@ interface EditorStore {
   setSizeWidth: (width: number) => void;
   setSizeHeight: (height: number) => void;
   setDragging: (dragging: boolean) => void;
+  setFurnitures: (furnitures: IFurniture[]) => void;
   setFurniturePosition: (id: number, x: number, y: number) => void;
   setFurnitureRotation: (id: number, rotation: number) => void;
   setActiveFurniture: (id: number) => void;
@@ -29,8 +30,8 @@ export const useEditor = create<EditorStore>((set, get) => ({
   furnitures: [],
 
   size: {
-    width: 0,
-    height: 0,
+    width: 1000,
+    height: 1000,
   },
 
   setSize: (width, height) =>
@@ -43,6 +44,9 @@ export const useEditor = create<EditorStore>((set, get) => ({
     set(state => ({ ...state, size: { ...state.size, height } })),
 
   setDragging: dragging => set(state => ({ ...state, isDragging: dragging })),
+
+  setFurnitures: (furnitures: IFurniture[]) =>
+    set(state => ({ ...state, furnitures })),
 
   setFurniturePosition: (id, x, y) =>
     set(state => ({
@@ -68,7 +72,7 @@ export const useEditor = create<EditorStore>((set, get) => ({
     set(state => {
       let width = Math.round(furniture.width / CELL_SIZE / 5) * CELL_SIZE;
       let height = Math.round(furniture.height / CELL_SIZE / 5) * CELL_SIZE;
-      const id = `${furniture.id}-${uuidv4()}`;
+      const id = `${furniture.id}@${uuidv4()}`;
 
       if (width < 100) width = 100;
       if (height < 100) height = 100;

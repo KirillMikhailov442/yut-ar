@@ -64,3 +64,13 @@
   justify-content: center;
   gap: 10px;
 }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-auto-rows: auto;
+  }
+
+  .add {
+    height: 200px;
+  }
+}
